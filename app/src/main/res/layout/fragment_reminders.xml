@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:id="@+id/reminderContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- RecyclerView always visible -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewReminders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp" />
+
+        <LinearLayout
+            android:id="@+id/setupLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/etReminderName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittextborder"
+                android:hint="Ex: Eye checkup, medicine"
+                android:inputType="text|textAutoCorrect"
+                android:padding="12dp"
+                android:textColor="#000"
+                android:textColorHint="@color/blue"
+                tools:text="@tools:sample/full_names" />
+
+            <Spinner
+                android:id="@+id/spinnerType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:animateLayoutChanges="false"
+                android:background="@drawable/edittextborder"
+                android:backgroundTint="#181414"
+                android:spinnerMode="dropdown" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Set Time"
+                android:textColor="#161515"
+                android:textStyle="bold" />
+
+            <TimePicker
+                android:id="@+id/timePicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:amPmBackgroundColor="#00BCD4"
+                android:amPmTextColor="#D36060"
+                android:animateLayoutChanges="true"
+                android:animationCache="true"
+                android:background="#EFE6E6"
+                android:backgroundTint="#F0E8E8"
+                android:backgroundTintMode="add"
+                android:numbersBackgroundColor="#1CE0E0"
+                android:numbersInnerTextColor="#070606"
+                android:numbersSelectorColor="#2558A8"
+                android:timePickerMode="clock" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Repeat On"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="8dp">
+
+                <ToggleButton android:id="@+id/toggleSunday" android:textOn="S" android:textOff="S" style="@style/DayToggle" />
+                <ToggleButton android:id="@+id/toggleMonday" android:textOn="M" android:textOff="M" style="@style/DayToggle" />
+                <ToggleButton android:id="@+id/toggleTuesday" android:textOn="T" android:textOff="T" style="@style/DayToggle" />
+                <ToggleButton android:id="@+id/toggleWednesday" android:textOn="W" android:textOff="W" style="@style/DayToggle" />
+                <ToggleButton android:id="@+id/toggleThursday" android:textOn="T" android:textOff="T" style="@style/DayToggle" />
+                <ToggleButton android:id="@+id/toggleFriday" android:textOn="F" android:textOff="F" style="@style/DayToggle" />
+                <ToggleButton android:id="@+id/toggleSaturday" android:textOn="S" android:textOff="S" style="@style/DayToggle" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnDone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Done"
+                android:textAllCaps="false"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="@color/blue"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnAddReminder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Reminder"
+            android:textAllCaps="false"
+            android:visibility="gone"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/blue"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">MediCare</string>
+    <string name="dr_devaraj_m">Dr. Devaraj M</string>
+    <string name="number">Number</string>
+    <string name="gender">Gender</string>
+    <string name="address">Address</string>
+    <string name="proceed_to_payment">Proceed to Payment</string>
+    <string name="hope_your_are_well">Hope Your are well!</string>
+    <string name="hyderabad"><![CDATA[Hyderabad >]]></string>
+    <string name="default_web_client_id">824107101821-nqlmkfu19mr78kngcq6vdfq98qtqnk7j.apps.googleusercontent.com</string>
+    <string name="google_maps_key">"AIzaSyALr3mmQVO6fG-TVBBvixD5wVN5PFRSgFY"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

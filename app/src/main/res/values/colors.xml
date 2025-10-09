@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray">#FFC4C4C4</color>
+    <color name="blue">#103C95</color>
+    <color name="light_blue">#D3E3FC</color>
+    <color name="track_on">#02A086</color>  <!-- Green when ON -->
+    <color name="track_off">#D3D3D3</color>  <!-- Gray when OFF -->
+    <color name="thumb_on">#64B5F6</color>  <!-- White when ON -->
+    <color name="thumb_off">#808080</color>  <!-- Dark Gray when OFF -->
+    <color name="primary_blue">#183E9F</color>
+    <color name="gray_tab">#848484</color>
+    <color name="green_on">#66BB6A</color>
+    <color name="dark_green">#2E7D32</color>
+    <color name="gray_off">#BDBDBD</color>
+
+
+
+
+</resources>

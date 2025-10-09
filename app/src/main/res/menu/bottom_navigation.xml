@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:iconTint="#183E9F"
+        android:icon="@drawable/baseline_home_24" />
+    <item
+        android:id="@+id/search"
+        android:iconTint="#183E9F"
+        android:icon="@drawable/baseline_search_24"
+        android:title="Search" />
+    <item
+        android:id="@+id/alarm"
+        android:iconTint="#183E9F"
+        android:icon="@drawable/baseline_access_alarm_24"
+        android:title="Alarm" />
+    <item
+        android:id="@+id/profile"
+        android:iconTint="#183E9F"
+        android:icon="@drawable/baseline_account_circle_24"
+        android:title="Profile" />
+</menu>

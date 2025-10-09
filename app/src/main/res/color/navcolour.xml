@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Color when item is clicked/selected -->
+    <item android:color="#183E9F" android:state_checked="true" />
+
+    <!-- Color when hovered (only works in some UI elements, not BottomNavigationView) -->
+    <item android:color="#183E9F" android:state_hovered="true" />
+
+    <!-- Default color when unselected -->
+    <item android:color="#A4A3A3" />
+</selector>
