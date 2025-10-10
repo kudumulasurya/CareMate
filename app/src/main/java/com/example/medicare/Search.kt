@@ -9,6 +9,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.*
 
 class Search : Fragment() {
     private lateinit var recyclerView: RecyclerView
@@ -28,18 +29,15 @@ class Search : Fragment() {
         searchEditText.setTextColor(Color.BLACK)
         searchEditText.setHintTextColor(Color.DKGRAY)
 
-        dataList = mutableListOf(
-            DoctorModel(R.drawable.img_10, "Dr. Devaraj Eye Hospital", "Dr. Devaraj M", "Ophthalmologist - 14 years experience", "★★★★★ 45 reviews", "₹300 Consultation Fees"),
-            DoctorModel(R.drawable.img_11, "Hope Hospital", "Dr. Krishna Kumar", "Orthopedist - 18 years experience", "★★★★ 31 reviews", "₹400 Consultation Fees"),
-            DoctorModel(R.drawable.img_12, "Chisel Dental", "Dr. Deepthi", "Dentist - 21 years experience", "★★★★ 35 reviews", "₹500 Consultation Fees"),
-            DoctorModel(R.drawable.img_13, "Children Hospital", "Dr. Mallesh", "Pediatrician - 20 years experience", "★★★★ 20 reviews", "₹300 Consultation Fees")
-        )
-
+        dataList = mutableListOf()
         filteredList = mutableListOf()
         itemAdapter = DoctorAdaptor(filteredList, requireContext())
+
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = itemAdapter
+
+        fetchDoctorsFromFirebase()
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean = false
@@ -52,9 +50,44 @@ class Search : Fragment() {
         return view
     }
 
+    private fun fetchDoctorsFromFirebase() {
+        FirebaseDatabase.getInstance().getReference("Users").child("Doctors")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    dataList.clear()
+                    for (doctorSnap in snapshot.children) {
+                        val map = doctorSnap.value as? Map<*, *> ?: continue
+                        val imageUrl = map["profileImageUrl"] as? String ?: ""
+                        val hospitalName = map["hospitalName"] as? String ?: ""
+                        val doctorName = map["name"] as? String ?: ""
+                        val specialization = map["specialization"] as? String ?: ""
+                        val yearsOfExperience = map["yearsOfExperience"] as? String ?: ""
+                        val fee = map["consultationFee"] as? String ?: ""
+                        val rating = "★★★★★ 45 reviews" // or fetch from DB if present
+
+                        dataList.add(
+                            DoctorModel(
+                                imageUrl = imageUrl,
+                                hospitalName = hospitalName,
+                                doctorName = doctorName,
+                                experience = "$specialization - $yearsOfExperience years experience",
+                                rating = rating,
+                                fees = "₹$fee Consultation Fees"
+                            )
+                        )
+                    }
+                    // Set the initial filteredList to show ALL doctors
+                    filteredList.clear()
+                    filteredList.addAll(dataList)
+                    itemAdapter.notifyDataSetChanged()
+                }
+
+                override fun onCancelled(error: DatabaseError) {}
+            })
+    }
+
     private fun filter(text: String?) {
         filteredList.clear()
-
         if (!text.isNullOrEmpty()) {
             filteredList.addAll(
                 dataList.filter {
@@ -66,7 +99,6 @@ class Search : Fragment() {
         } else {
             filteredList.addAll(dataList)
         }
-
         itemAdapter.notifyDataSetChanged()
     }
 }

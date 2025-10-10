@@ -9,7 +9,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlin.jvm.java
+import com.bumptech.glide.Glide
 
 class DoctorAdaptor(private var doctorList: List<DoctorModel>, private val context: Context) :
     RecyclerView.Adapter<DoctorAdaptor.ViewHolder>() {
@@ -33,7 +33,13 @@ class DoctorAdaptor(private var doctorList: List<DoctorModel>, private val conte
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val doctorItem = doctorList[position]
-        holder.image.setImageResource(doctorItem.image)
+
+        Glide.with(context)
+            .load(doctorItem.imageUrl)
+            .placeholder(R.drawable.ic_doctor_placeholder)
+            .error(R.drawable.ic_doctor_placeholder)
+            .into(holder.image)
+
         holder.hospital.text = doctorItem.hospitalName
         holder.doctor.text = doctorItem.doctorName
         holder.experience.text = doctorItem.experience
@@ -47,7 +53,7 @@ class DoctorAdaptor(private var doctorList: List<DoctorModel>, private val conte
                 putExtra("experience", doctorItem.experience)
                 putExtra("rating", doctorItem.rating)
                 putExtra("fees", doctorItem.fees)
-                putExtra("image", doctorItem.image)
+                putExtra("image_url", doctorItem.imageUrl)
             }
             context.startActivity(intent)
         }

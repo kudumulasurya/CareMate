@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
     alias(libs.plugins.google.firebase.crashlytics)
+    id("kotlin-kapt")
 }
 
 android {
@@ -36,8 +37,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
+
+    kotlin {
+        jvmToolchain(11)
     }
     buildFeatures {
         viewBinding = true
@@ -83,6 +85,11 @@ dependencies {
     implementation("com.cloudinary:cloudinary-android:2.4.0")
     //noinspection NewerVersionAvailable
     implementation("com.cloudinary:cloudinary-android:3.0.2")
+    implementation("com.github.bumptech.glide:glide:4.15.1")
+    kapt("com.github.bumptech.glide:compiler:4.15.1")
+
+
+
 
 
 
