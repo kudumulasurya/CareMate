@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
+import kotlin.random.Random
+import kotlin.math.round
 
 class Search : Fragment() {
     private lateinit var recyclerView: RecyclerView
@@ -57,13 +59,26 @@ class Search : Fragment() {
                     dataList.clear()
                     for (doctorSnap in snapshot.children) {
                         val map = doctorSnap.value as? Map<*, *> ?: continue
-                        val imageUrl = map["profileImageUrl"] as? String ?: ""
+
+                        // PATCH HTTP to HTTPS!
+                        val rawImageUrl = map["profileImageUrl"] as? String ?: ""
+                        val imageUrl = if (rawImageUrl.startsWith("http://")) {
+                            rawImageUrl.replace("http://", "https://")
+                        } else {
+                            rawImageUrl
+                        }
+
                         val hospitalName = map["hospitalName"] as? String ?: ""
                         val doctorName = map["name"] as? String ?: ""
                         val specialization = map["specialization"] as? String ?: ""
                         val yearsOfExperience = map["yearsOfExperience"] as? String ?: ""
                         val fee = map["consultationFee"] as? String ?: ""
-                        val rating = "★★★★★ 45 reviews" // or fetch from DB if present
+                        
+                        val ratingValue = round((Random.nextDouble(3.5, 5.01)) * 10) / 10
+                        val starsCount = ratingValue.toInt().coerceIn(3, 5)
+                        val ratingStars = "★".repeat(starsCount)
+                        val reviewCount = Random.nextInt(40, 101)
+                        val rating = "$ratingStars  $ratingValue  ($reviewCount reviews)"
 
                         dataList.add(
                             DoctorModel(
@@ -76,12 +91,10 @@ class Search : Fragment() {
                             )
                         )
                     }
-                    // Set the initial filteredList to show ALL doctors
                     filteredList.clear()
                     filteredList.addAll(dataList)
                     itemAdapter.notifyDataSetChanged()
                 }
-
                 override fun onCancelled(error: DatabaseError) {}
             })
     }

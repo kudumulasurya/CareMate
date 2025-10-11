@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home1"
+        android:icon="@drawable/baseline_home_24"
+        android:iconTint="#183E9F"
+        android:title="Home" />
+    <item
+        android:id="@+id/patients"
+        android:iconTint="#183E9F"
+        android:icon="@android:drawable/ic_menu_rotate"
+        android:title="Activity" />
+    <item
+        android:id="@+id/profile"
+        android:iconTint="#183E9F"
+        android:icon="@drawable/img_15"
+        android:title="Profile" />
+</menu>
+

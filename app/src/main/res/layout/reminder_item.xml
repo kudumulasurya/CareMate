@@ -22,7 +22,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/tablets"
-            android:contentDescription="icon"
+            android:contentDescription="@string/icon"
             android:layout_marginEnd="12dp"/>
 
         <LinearLayout
@@ -35,7 +35,7 @@
                 android:id="@+id/reminderTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="07 : 30 AM"
+                android:text="@string/reminder_time"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
 
@@ -43,7 +43,7 @@
                 android:id="@+id/reminderNote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sugar tablet"
+                android:text="@string/reminder_note"
                 android:textColor="#666"
                 android:textSize="13sp"/>
         </LinearLayout>

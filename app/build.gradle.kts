@@ -48,49 +48,23 @@ android {
 }
 
 dependencies {
-    // Firebase BOM (Manages versions automatically)
-    implementation(platform("com.google.firebase:firebase-bom:32.7.0")) // Use latest BOM
-
-    // Firebase Auth & Firestore (No need to specify versions separately)
+    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
-
-    // Firebase Features
     implementation("com.google.firebase:firebase-crashlytics")
     implementation("com.google.firebase:firebase-database")
-
-    // Google Play Services Auth
     implementation("com.google.android.gms:play-services-auth:20.7.0")
-
-    // AndroidX & UI Libraries
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-
-    // Other Dependencies
     implementation("androidx.recyclerview:recyclerview:1.4.0")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation(libs.converter.gson)
     implementation(libs.gson)
-    implementation(libs.glide)
-
-    // Testing
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    implementation ("com.google.android.gms:play-services-auth:20.7.0")
-    implementation("com.google.firebase:firebase-storage:20.1.0")
-    implementation("com.cloudinary:cloudinary-android:2.4.0")
-    //noinspection NewerVersionAvailable
-    implementation("com.cloudinary:cloudinary-android:3.0.2")
     implementation("com.github.bumptech.glide:glide:4.15.1")
+    implementation("com.google.firebase:firebase-storage:20.1.0")
+    implementation("com.cloudinary:cloudinary-android:3.0.2")
     kapt("com.github.bumptech.glide:compiler:4.15.1")
-
-
-
-
-
-
 }

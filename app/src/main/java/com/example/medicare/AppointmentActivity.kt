@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 
 class AppointmentActivity : AppCompatActivity() {
 
@@ -14,7 +15,8 @@ class AppointmentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_appointment)
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-        val doctorImage = intent.getIntExtra("image", 0)
+
+        val doctorImageUrl = intent.getStringExtra("image_url")
         val hospitalName = intent.getStringExtra("hospital_name")
         val doctorName = intent.getStringExtra("doctor_name")
         val specialty = intent.getStringExtra("experience")
@@ -30,6 +32,7 @@ class AppointmentActivity : AppCompatActivity() {
         val ChangeDoctor = findViewById<Button>(R.id.btnChangeDoctor)
         val Back = findViewById<ImageView>(R.id.Back)
         val payment = findViewById<Button>(R.id.btnProceedToPayment)
+
         Back.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
@@ -37,15 +40,17 @@ class AppointmentActivity : AppCompatActivity() {
             Toast.makeText(this, "Payment Successful", Toast.LENGTH_SHORT).show()
         }
 
+        Glide.with(this)
+            .load(doctorImageUrl)
+            .placeholder(R.drawable.ic_doctor_placeholder)
+            .error(R.drawable.ic_doctor_placeholder)
+            .into(DoctorProfile)
 
-
-        DoctorProfile.setImageResource(doctorImage)
         Hospital.text = hospitalName
         DoctorName.text = doctorName
         Specialty.text = specialty
         Rating.text = rating
         Fees.text = fees
-
 
         ChangeDoctor.setOnClickListener {
             finish()

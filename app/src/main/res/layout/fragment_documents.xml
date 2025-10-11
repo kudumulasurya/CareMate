@@ -9,7 +9,7 @@
         android:id="@+id/emptyTextView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="No documents found.\nTap + to add one!"
+        android:text="@string/no_documents_found"
         android:gravity="center"
         android:textSize="16sp"
         android:textColor="#888888"

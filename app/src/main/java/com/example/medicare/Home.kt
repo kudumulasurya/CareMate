@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
+import kotlin.random.Random
+import kotlin.math.round
 
 class Home : Fragment() {
     private lateinit var recyclerView: RecyclerView
@@ -50,7 +52,15 @@ class Home : Fragment() {
                         val specialization = map["specialization"] as? String ?: ""
                         val yearsOfExperience = map["yearsOfExperience"] as? String ?: ""
                         val fee = map["consultationFee"] as? String ?: ""
-                        val rating = "★★★★★ 45 reviews" // manual/default, you can fetch if you store per doctor
+
+                        // Random rating value from 3.5 to 5.0 with one decimal
+                        val ratingValue = round((Random.nextDouble(3.5, 5.01)) * 10) / 10
+                        // Number of stars: round to nearest integer between 3 and 5
+                        val starsCount = ratingValue.toInt().coerceIn(3, 5)
+                        val ratingStars = "★".repeat(starsCount)
+                        // Generate random review count (40 to 100)
+                        val reviewCount = Random.nextInt(40, 101)
+                        val rating = "$ratingStars  $ratingValue  ($reviewCount reviews)"
 
                         doctorList.add(
                             DoctorModel(

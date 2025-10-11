@@ -8,11 +8,13 @@ import android.widget.TextView
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 class ReminderAdapter(
     private val context: FragmentActivity,
-    private val reminders: List<Reminder>
+    private var reminders: MutableList<Reminder>,
+    private val onToggle: (Reminder, Boolean) -> Unit
 ) : RecyclerView.Adapter<ReminderAdapter.ReminderViewHolder>() {
 
     inner class ReminderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -20,6 +22,15 @@ class ReminderAdapter(
         val time: TextView = view.findViewById(R.id.reminderTime)
         val note: TextView = view.findViewById(R.id.reminderNote)
         val toggle: SwitchCompat = view.findViewById(R.id.reminderSwitch)
+
+        init {
+            toggle.setOnCheckedChangeListener { _, isChecked ->
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onToggle(reminders[position], isChecked)
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReminderViewHolder {
@@ -33,24 +44,35 @@ class ReminderAdapter(
         holder.note.text = reminder.name
         holder.toggle.isChecked = reminder.isActive
 
-        // Apply initial tint state
         updateSwitchColor(holder.toggle, reminder.isActive)
-
-        holder.toggle.setOnCheckedChangeListener { _, isChecked ->
-            reminder.isActive = isChecked
-            updateSwitchColor(holder.toggle, isChecked)
-        }
     }
 
     override fun getItemCount(): Int = reminders.size
 
     private fun updateSwitchColor(switch: SwitchCompat, isChecked: Boolean) {
-        if (isChecked) {
-            switch.trackDrawable.setTint(ContextCompat.getColor(context, R.color.track_on))
-            switch.thumbDrawable.setTint(ContextCompat.getColor(context, R.color.thumb_on))
-        } else {
-            switch.trackDrawable.setTint(ContextCompat.getColor(context, R.color.track_off))
-            switch.thumbDrawable.setTint(ContextCompat.getColor(context, R.color.thumb_off))
+        val trackColor = if (isChecked) R.color.track_on else R.color.track_off
+        val thumbColor = if (isChecked) R.color.thumb_on else R.color.thumb_off
+        switch.trackDrawable.setTint(ContextCompat.getColor(context, trackColor))
+        switch.thumbDrawable.setTint(ContextCompat.getColor(context, thumbColor))
+    }
+
+    fun updateList(newList: List<Reminder>) {
+        val diffResult = DiffUtil.calculateDiff(ReminderDiffCallback(this.reminders, newList))
+        this.reminders.clear()
+        this.reminders.addAll(newList)
+        diffResult.dispatchUpdatesTo(this)
+    }
+
+    class ReminderDiffCallback(private val oldList: List<Reminder>, private val newList: List<Reminder>) : DiffUtil.Callback() {
+        override fun getOldListSize(): Int = oldList.size
+        override fun getNewListSize(): Int = newList.size
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition].name == newList[newItemPosition].name
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition] == newList[newItemPosition]
         }
     }
 }

@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittextborder"
-                android:hint="Ex: Eye checkup, medicine"
+                android:hint="@string/reminder_hint"
                 android:inputType="text|textAutoCorrect"
                 android:padding="12dp"
                 android:textColor="#000"
@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Set Time"
+                android:text="@string/set_time"
                 android:textColor="#161515"
                 android:textStyle="bold" />
 
@@ -74,7 +74,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Repeat On"
+                android:text="@string/repeat_on"
                 android:textStyle="bold"
                 android:layout_marginTop="16dp" />
 
@@ -98,7 +98,7 @@
                 android:id="@+id/btnDone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Done"
+                android:text="@string/done"
                 android:textAllCaps="false"
                 android:layout_marginTop="24dp"
                 android:backgroundTint="@color/blue"
@@ -109,7 +109,7 @@
             android:id="@+id/btnAddReminder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Reminder"
+            android:text="@string/add_reminder"
             android:textAllCaps="false"
             android:visibility="gone"
             android:layout_marginTop="16dp"

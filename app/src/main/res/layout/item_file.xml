@@ -38,7 +38,7 @@
                 android:layout_marginEnd="15dp"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
-                android:src="@drawable/img_10" />
+                />
 
             <!-- Hospital & Doctor Details -->
             <LinearLayout
@@ -51,7 +51,7 @@
                     android:id="@+id/hospital"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Dr. Devaraj Eye Hospital"
+                    android:text="@string/dr_devaraj_eye_hospital"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -60,7 +60,7 @@
                     android:id="@+id/doctorname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Dr. Devaraj M"
+                    android:text="@string/dr_devaraj_m"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -69,7 +69,7 @@
                     android:id="@+id/doctordetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ophthalmologist/Eye Surgeon 14 years experience overall"
+                    android:text="@string/doctor_specialization"
                     android:textColor="#6D6D6D"
                     android:textSize="12sp" />
 
@@ -77,7 +77,7 @@
                     android:id="@+id/rating"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="★★★★★ 45 reviews"
+                    android:text="@string/doctor_rating"
                     android:textColor="#FF5733"
                     android:textSize="14sp" />
 
@@ -86,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="₹300 Consultation Fees"
+                    android:text="@string/consultation_fees"
                     android:textColor="#000000"
                     android:textSize="12sp" />
 
@@ -97,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:backgroundTint="#183E9F"
-                    android:text="Book Clinic Visit"
+                    android:text="@string/book_clinic_visit"
                     android:textColor="#FFFFFF"
                     android:textAllCaps="false"
                     android:elevation="4dp"

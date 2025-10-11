@@ -14,6 +14,7 @@ class Reminders : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ReminderAdapter
     private val remindersList = mutableListOf<Reminder>()
+    private var editingPosition: Int = -1
 
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
@@ -24,7 +25,9 @@ class Reminders : Fragment() {
 
         recyclerView = view.findViewById(R.id.recyclerViewReminders)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = ReminderAdapter(requireActivity(), remindersList)
+        adapter = ReminderAdapter(requireActivity(), remindersList) { reminder, isChecked ->
+            reminder.isActive = isChecked
+        }
         recyclerView.adapter = adapter
 
         val setupLayout = view.findViewById<LinearLayout>(R.id.setupLayout)
@@ -44,7 +47,6 @@ class Reminders : Fragment() {
             view.findViewById<ToggleButton>(R.id.toggleSaturday)
         )
 
-        // Populate spinner
         val types = listOf("Medicine", "Doctor", "Exercise", "Others")
         spinner.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, types)
 
@@ -54,6 +56,7 @@ class Reminders : Fragment() {
             timePicker.hour = 8
             timePicker.minute = 0
             toggleDays.forEach { it.isChecked = false }
+            editingPosition = -1
         }
 
         doneBtn.setOnClickListener {
@@ -68,10 +71,15 @@ class Reminders : Fragment() {
             }
 
             if (name.isNotBlank()) {
-                remindersList.add(0, Reminder(name, type, time, days))
-                adapter.notifyItemInserted(0)
-                recyclerView.scrollToPosition(0)
-
+                val newReminder = Reminder(name, type, time, days)
+                if (editingPosition != -1) {
+                    remindersList[editingPosition] = newReminder
+                    adapter.notifyItemChanged(editingPosition)
+                } else {
+                    remindersList.add(0, newReminder)
+                    adapter.notifyItemInserted(0)
+                    recyclerView.scrollToPosition(0)
+                }
                 setupLayout.visibility = View.GONE
                 addReminderBtn.visibility = View.VISIBLE
                 clearInputs()
@@ -83,21 +91,28 @@ class Reminders : Fragment() {
         addReminderBtn.setOnClickListener {
             setupLayout.visibility = View.VISIBLE
             addReminderBtn.visibility = View.GONE
+            clearInputs()
         }
 
-        // Check if data is passed for editing
         arguments?.let {
-            val name = it.getString("name", "")
-            val type = it.getString("type", "")
-            val time = it.getString("time", "")
-            val days = it.getStringArrayList("days") ?: arrayListOf()
-
-            if (name.isNotEmpty()) {
-                remindersList.add(0, Reminder(name, type, time, days))
-                adapter.notifyItemInserted(0)
-                recyclerView.scrollToPosition(0)
-                setupLayout.visibility = View.GONE
-                addReminderBtn.visibility = View.VISIBLE
+            editingPosition = it.getInt("position", -1)
+            if (editingPosition != -1) {
+                val reminder = remindersList[editingPosition]
+                nameEditText.setText(reminder.name)
+                spinner.setSelection(types.indexOf(reminder.type))
+                val timeParts = reminder.time.split(":")
+                timePicker.hour = timeParts[0].toInt()
+                timePicker.minute = timeParts[1].toInt()
+                val daysOfWeek = listOf("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
+                reminder.days.forEach { day ->
+                    val index = daysOfWeek.indexOf(day)
+                    if (index != -1) {
+                        toggleDays[index].isChecked = true
+                    }
+                }
+                setupLayout.visibility = View.VISIBLE
+                addReminderBtn.visibility = View.GONE
+                it.clear()
             }
         }
 

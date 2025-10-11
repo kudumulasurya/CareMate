@@ -62,7 +62,12 @@ class Bankdetails : AppCompatActivity() {
             return
         }
 
-        val doctorMap = intent.getSerializableExtra("doctorMap") as HashMap<String, String>
+        val doctorMap = intent.getSerializableExtra("doctorMap") as? HashMap<String, String>
+        if (doctorMap == null) {
+            Toast.makeText(this, "Error: Missing doctor details", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         doctorMap["accountholdername"] = name
         doctorMap["accountnumber"] = number
         doctorMap["bankname"] = bank
@@ -89,7 +94,7 @@ class Bankdetails : AppCompatActivity() {
                     .addOnSuccessListener {
                         progressBar.isVisible = false
                         Toast.makeText(this, "Doctor signup complete!", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, DoctorHome::class.java)
+                        val intent = Intent(this, DoctorHomeActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
                         finish()

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".DoctorLogin.DocSignup">
+    tools:context="DoctorLogin.DocSignup">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="12dp"
-                android:contentDescription="App Logo"
+                android:contentDescription="@string/app_logo"
                 android:src="@drawable/doclog" />
 
             <TextView
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:fontFamily="@font/poppinssemibold"
-                android:text="Personal Details"
+                android:text="@string/personal_details"
                 android:textAlignment="center"
                 android:textColor="#183E9F"
                 android:textSize="22sp"
@@ -46,7 +46,7 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="25dp"
-                android:hint="Full Name"
+                android:hint="@string/full_name"
                 app:boxCornerRadiusBottomEnd="10dp"
                 app:boxCornerRadiusBottomStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
@@ -77,7 +77,7 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="25dp"
-                android:hint="Email"
+                android:hint="@string/email"
                 app:boxCornerRadiusBottomEnd="10dp"
                 app:boxCornerRadiusBottomStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
@@ -107,7 +107,7 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="25dp"
-                android:hint="Password"
+                android:hint="@string/password"
                 app:boxCornerRadiusBottomEnd="10dp"
                 app:boxCornerRadiusBottomStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
@@ -139,7 +139,7 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="25dp"
-                android:hint="Confirm password"
+                android:hint="@string/confirm_password"
                 app:boxCornerRadiusBottomEnd="10dp"
                 app:boxCornerRadiusBottomStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
@@ -171,7 +171,7 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="25dp"
-                android:hint="Number"
+                android:hint="@string/number"
                 app:boxCornerRadiusBottomEnd="10dp"
                 app:boxCornerRadiusBottomStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
@@ -203,7 +203,7 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="25dp"
-                android:hint="Address"
+                android:hint="@string/address"
                 app:boxCornerRadiusBottomEnd="10dp"
                 app:boxCornerRadiusBottomStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
@@ -230,7 +230,7 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="25dp"
-                android:hint="Date of Birth"
+                android:hint="@string/date_of_birth"
                 app:boxCornerRadiusBottomEnd="10dp"
                 app:boxCornerRadiusBottomStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
@@ -261,7 +261,7 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="25dp"
-                android:hint="Gender"
+                android:hint="@string/gender"
                 app:boxCornerRadiusBottomEnd="10dp"
                 app:boxCornerRadiusBottomStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
@@ -290,7 +290,7 @@
                 android:layout_marginTop="18dp"
                 android:layout_marginEnd="30dp"
                 android:backgroundTint="#64EBB6"
-                android:text="Next"
+                android:text="@string/next"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -305,7 +305,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Already have an account?"
+                    android:text="@string/already_have_an_account"
                     android:textColor="#808080"
                     android:textSize="16sp" />
 
@@ -313,7 +313,7 @@
                     android:id="@+id/Login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" Login"
+                    android:text="@string/login"
                     android:textColor="#0000FF"
                     android:textSize="16sp"
                     android:textStyle="bold" />

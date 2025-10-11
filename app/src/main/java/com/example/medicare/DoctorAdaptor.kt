@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
@@ -36,8 +37,8 @@ class DoctorAdaptor(private var doctorList: List<DoctorModel>, private val conte
 
         Glide.with(context)
             .load(doctorItem.imageUrl)
-            .placeholder(R.drawable.ic_doctor_placeholder)
-            .error(R.drawable.ic_doctor_placeholder)
+            .placeholder(R.drawable.circle_avatar_placeholder)
+            .error(R.drawable.circle_avatar_placeholder)
             .into(holder.image)
 
         holder.hospital.text = doctorItem.hospitalName
@@ -60,7 +61,21 @@ class DoctorAdaptor(private var doctorList: List<DoctorModel>, private val conte
     }
 
     fun updateList(newList: List<DoctorModel>) {
-        doctorList = newList
-        notifyDataSetChanged()
+        val diffResult = DiffUtil.calculateDiff(DoctorDiffCallback(this.doctorList, newList))
+        this.doctorList = newList
+        diffResult.dispatchUpdatesTo(this)
+    }
+
+    class DoctorDiffCallback(private val oldList: List<DoctorModel>, private val newList: List<DoctorModel>) : DiffUtil.Callback() {
+        override fun getOldListSize(): Int = oldList.size
+        override fun getNewListSize(): Int = newList.size
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition].doctorName == newList[newItemPosition].doctorName && oldList[oldItemPosition].hospitalName == newList[newItemPosition].hospitalName
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition] == newList[newItemPosition]
+        }
     }
 }

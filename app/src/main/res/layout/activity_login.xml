@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="10dp"
-        android:text="“Welcome back to your path to better health”"
+        android:text="@string/welcome_back"
         android:textAlignment="center"
         android:textColor="#183E9F"
         android:textSize="20sp"
@@ -36,7 +36,7 @@
             android:id="@+id/imageView2"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:contentDescription="App Logo"
+            android:contentDescription="@string/app_logo"
             app:srcCompat="@drawable/img_1" />
 
         <TextView
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/poppinssemibold"
-            android:text="PATIENT"
+            android:text="@string/patient"
             android:textAlignment="center"
             android:textColor="#183E9F"
             android:textSize="24sp"
@@ -65,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:hint="Email"
+            android:hint="@string/email"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusTopEnd="12dp"
@@ -95,7 +95,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/password"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusTopEnd="12dp"
@@ -130,7 +130,7 @@
         android:layout_gravity="end"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
-        android:text="Forgot Password?"
+        android:text="@string/forgot_password"
         android:textColor="#183E9F"
         android:textSize="14sp" />
 
@@ -141,7 +141,7 @@
         android:layout_height="55dp"
         android:layout_marginBottom="20dp"
         android:backgroundTint="#64EBB6"
-        android:text="Login"
+        android:text="@string/login"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -156,7 +156,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create an account?"
+            android:text="@string/create_an_account"
             android:textColor="#808080"
             android:textSize="16sp" />
 
@@ -164,7 +164,7 @@
             android:id="@+id/signupText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" Sign up"
+            android:text="@string/sign_up"
             android:textColor="#0000FF"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -186,7 +186,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Doctor's Login?"
+            android:text="@string/doctors_login"
             android:textColor="#808080"
             android:textSize="16sp" />
 
@@ -194,7 +194,7 @@
             android:id="@+id/doctorlogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" Login"
+            android:text="@string/login"
             android:textColor="#0000FF"
             android:textSize="16sp"
             android:textStyle="bold" />

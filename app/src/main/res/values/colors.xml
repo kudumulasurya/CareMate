@@ -14,6 +14,16 @@
     <color name="green_on">#66BB6A</color>
     <color name="dark_green">#2E7D32</color>
     <color name="gray_off">#BDBDBD</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
+    <color name="light_blue_A200">#FF40C4FF</color>
+    <color name="light_blue_A400">#FF00B0FF</color>
+    <color name="black_overlay">#66000000</color>
+        <color name="primary">#143C8C</color>
+        <color name="bg">#F2F4F7</color>
+        <color name="surface">#FFFFFF</color>
+        <color name="text_primary">#101828</color>
+        <color name="text_secondary">#667085</color>
 
 
 

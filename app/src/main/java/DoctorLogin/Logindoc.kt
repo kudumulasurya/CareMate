@@ -66,7 +66,7 @@ class Logindoc : AppCompatActivity() {
                                 if (snapshot.exists()) {
                                     Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
                                     // Navigate to the DoctorHome activity
-                                    val intent = Intent(this, DoctorHome::class.java)
+                                    val intent = Intent(this, DoctorHomeActivity::class.java)
                                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                     startActivity(intent)
                                     finish()
