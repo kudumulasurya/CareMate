@@ -1,6 +1,3 @@
-import org.gradle.kotlin.dsl.annotationProcessor
-import org.gradle.kotlin.dsl.implementation
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -47,6 +44,14 @@ android {
     }
 }
 
+kapt {
+    // Add these arguments to suppress the illegal reflective access warning
+    javacOptions {
+        option("--add-opens=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED")
+        option("--add-opens=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED")
+    }
+}
+
 dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation("com.google.firebase:firebase-auth")
@@ -67,4 +72,28 @@ dependencies {
     implementation("com.google.firebase:firebase-storage:20.1.0")
     implementation("com.cloudinary:cloudinary-android:3.0.2")
     kapt("com.github.bumptech.glide:compiler:4.15.1")
+    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.11.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+
+    // Retrofit for API calls
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.google.code.gson:gson:2.10.1")
+
+    // Kotlin Coroutines (for managing asynchronous tasks)
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    // Navigation Drawer (for the history sidebar)
+    implementation("androidx.drawerlayout:drawerlayout:1.2.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.squareup.okhttp3:okhttp-urlconnection:4.12.0")
+
+    // OkHttp logging interceptor (Highly recommended for debugging)
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+
+    // Lifecycle components (optional, but good for robust code)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
 }

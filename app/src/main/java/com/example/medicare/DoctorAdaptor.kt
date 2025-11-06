@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class DoctorAdaptor(private var doctorList: List<DoctorModel>, private val context: Context) :
+class DoctorAdaptor(private var doctorList: List<Doctor>, private val context: Context) :
     RecyclerView.Adapter<DoctorAdaptor.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -36,42 +36,43 @@ class DoctorAdaptor(private var doctorList: List<DoctorModel>, private val conte
         val doctorItem = doctorList[position]
 
         Glide.with(context)
-            .load(doctorItem.imageUrl)
-            .placeholder(R.drawable.circle_avatar_placeholder)
-            .error(R.drawable.circle_avatar_placeholder)
+            .load(doctorItem.profileImageUrl)
+            .placeholder(R.drawable.ic_doctor_placeholder)
+            .error(R.drawable.ic_doctor_placeholder)
             .into(holder.image)
 
         holder.hospital.text = doctorItem.hospitalName
-        holder.doctor.text = doctorItem.doctorName
-        holder.experience.text = doctorItem.experience
-        holder.rating.text = doctorItem.rating
-        holder.fees.text = doctorItem.fees
+        holder.doctor.text = doctorItem.name
+        holder.experience.text = "${doctorItem.specialization} - ${doctorItem.yearsOfExperience} years experience"
+        holder.rating.text = "★★★★★ 45 reviews" // Placeholder rating
+        holder.fees.text = "₹${doctorItem.consultationFee} Consultation Fees"
 
         holder.bookButton.setOnClickListener {
             val intent = Intent(context, AppointmentActivity::class.java).apply {
-                putExtra("doctor_name", doctorItem.doctorName)
+                putExtra("doctor_uid", doctorItem.uid)
+                putExtra("doctor_name", doctorItem.name)
                 putExtra("hospital_name", doctorItem.hospitalName)
-                putExtra("experience", doctorItem.experience)
-                putExtra("rating", doctorItem.rating)
-                putExtra("fees", doctorItem.fees)
-                putExtra("image_url", doctorItem.imageUrl)
+                putExtra("experience", doctorItem.specialization)
+                putExtra("rating", "★★★★★ 45 reviews")
+                putExtra("fees", "₹${doctorItem.consultationFee} Consultation Fees")
+                putExtra("image_url", doctorItem.profileImageUrl)
             }
             context.startActivity(intent)
         }
     }
 
-    fun updateList(newList: List<DoctorModel>) {
+    fun updateList(newList: List<Doctor>) {
         val diffResult = DiffUtil.calculateDiff(DoctorDiffCallback(this.doctorList, newList))
         this.doctorList = newList
         diffResult.dispatchUpdatesTo(this)
     }
 
-    class DoctorDiffCallback(private val oldList: List<DoctorModel>, private val newList: List<DoctorModel>) : DiffUtil.Callback() {
+    class DoctorDiffCallback(private val oldList: List<Doctor>, private val newList: List<Doctor>) : DiffUtil.Callback() {
         override fun getOldListSize(): Int = oldList.size
         override fun getNewListSize(): Int = newList.size
 
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return oldList[oldItemPosition].doctorName == newList[newItemPosition].doctorName && oldList[oldItemPosition].hospitalName == newList[newItemPosition].hospitalName
+            return oldList[oldItemPosition].uid == newList[newItemPosition].uid
         }
 
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {

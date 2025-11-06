@@ -7,8 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:fitsSystemWindows="false"
-
     tools:context=".Navigation">
     <FrameLayout
         android:id="@+id/frame"
@@ -28,7 +26,6 @@
         app:itemIconTint="#183E9F"
         app:labelVisibilityMode="unlabeled"
         android:layout_gravity="bottom"
-        android:fitsSystemWindows="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
