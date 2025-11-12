@@ -16,7 +16,7 @@
     <string name="app_logo">App Logo</string>
     <string name="personal_details">Personal Details</string>
     <string name="full_name">Full Name</string>
-    <string name="email">Email</string>
+    <string name="email">Email</string>C:/Users/surya reddy/Desktop/Medicare2/Medicare/app/src/main/res/layout/fragment_doctor_home.xml
     <string name="password">Password</string>
     <string name="confirm_password">Confirm password</string>
     <string name="date_of_birth">Date of Birth</string>
@@ -39,7 +39,7 @@
     <string name="cough">Cough</string>
     <string name="body_pains">Body Pains</string>
     <string name="dental_care">Dental Care</string>
-    <string name="skin_care">Skin Care</string>
+    <string name="skin_care">Skin Care</string>DEsktop
     <string name="upcoming_appointment">Upcoming Appointment</string>
     <string name="your_queue_no_13">Your Queue no : 13</string>
     <string name="idha_skin_clinic">IDHA Skin Clinic</string>
@@ -61,6 +61,7 @@
     <string name="create_an_account">Create an account?</string>
     <string name="sign_up"> Sign up</string>
     <string name="doctors_login">Doctor\'s Login?</string>
+fun FragmentDoctorHomeBinding.bind(patient: Patient) {
     <string name="signup_welcome">“Skip the line, not the care Register now”</string>
     <string name="signup">Signup</string>
     <string name="search">Search...</string>
@@ -84,6 +85,7 @@
     <string name="done">Done</string>
     <string name="add_reminder">Add Reminder</string>
     <string name="back_button">Back Button</string>
+Ci/Users/surya reddy/Desktop/Medicare2/Medicare/app/src/main/res/layout/fragment_doctor_home.xml
     <string name="documinder">DocuMinder</string>
     <string name="documents">Documents</string>
     <string name="patient_details">Patient Details</string>
@@ -98,4 +100,18 @@
     <string name="ifsc_code">IFSC Code</string>
     <string name="bank_address">Bank Address</string>
     <string name="account_type">Account Type</string>
+    <string name="patients_in_queue">Patients in queue</string>
+    <string name="patient_number">Patient Number</string>
+    <string name="minus_symbol">−</string>
+    <string name="zero">0</string>
+    <string name="plus_symbol">+</string>
+    <string name="per_patient">Per Patient</string>
+    <string name="six_minutes">06 min</string>
+    <string name="appointment_no">Appointment no :</string>
+    <string name="patient_image_description">Patient Image</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="confirm">Confirm</string>
+    <string name="waiting">Waiting</string>
+    <string name="upcoming_patients">Upcoming Patients</string>
+    <string name="waiting_list">Waiting List</string>
 </resources>

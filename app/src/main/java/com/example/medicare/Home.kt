@@ -15,10 +15,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-// Assuming you have an Activity named ChatbotActivity for the new page
-// You need to create this Activity:
-// class ChatbotActivity : AppCompatActivity() { ... }
-
 class Home : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var doctorAdapter: DoctorAdaptor

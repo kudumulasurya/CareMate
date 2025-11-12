@@ -11,6 +11,16 @@ data class Appointment(
     val hospitalName: String? = "",
     val doctorName: String? = "",
     val timestamp: Long = 0,
+
+    // status: "Upcoming", "Waiting", "Confirmed"
     var status: String = "Upcoming",
-    val queueNumber: Int = 0
+
+    // Queue priority (lower = earlier)
+    val queueNumber: Int = 0,
+
+    // NEW: when a patient is sent to waiting, they rejoin upcoming after this time
+    var waitUntil: Long = 0L,
+
+    // NEW: when confirmed, record time
+    var confirmedAt: Long = 0L
 )
