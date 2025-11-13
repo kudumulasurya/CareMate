@@ -15,32 +15,37 @@ class DoctorHomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_doctor_home)
-        bottomNavigationView = findViewById(R.id.bottom_nav)
 
-        bottomNavigationView.setOnItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.home1 -> {
+        bottomNavigationView = findViewById(R.id.doctorBottomNav)
+
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+
+                R.id.nav_home -> {
                     replaceFragment(DoctorHome())
                     true
                 }
+
                 R.id.patients -> {
-                    replaceFragment(Queue())
+                    replaceFragment(Queue())   // create this fragment
                     true
                 }
+
                 R.id.profile -> {
                     replaceFragment(DoctorProfile())
                     true
                 }
+
                 else -> false
             }
         }
-        // Default fragment when first loaded
+
+        // Default
         replaceFragment(DoctorHome())
     }
 
     private fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager
-            .beginTransaction()
+        supportFragmentManager.beginTransaction()
             .replace(R.id.frame, fragment)
             .commit()
     }
