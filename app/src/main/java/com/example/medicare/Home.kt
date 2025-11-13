@@ -14,6 +14,10 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class Home : Fragment() {
     private lateinit var recyclerView: RecyclerView
@@ -45,20 +49,28 @@ class Home : Fragment() {
     }
 
     private fun fetchDoctorsFromFirebase() {
-        FirebaseDatabase.getInstance().getReference("Users").child("Doctors")
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val doctorList = snapshot.children.mapNotNull {
-                        val doctor = it.getValue(Doctor::class.java)
-                        Log.d("HomeFragment", "Fetched doctor: ${doctor?.name}, Image URL: ${doctor?.profileImageUrl}")
-                        doctor
-                    }
-                    doctorAdapter.updateList(doctorList)
-                }
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                FirebaseDatabase.getInstance().getReference("Users").child("Doctors")
+                    .addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            val doctorList = snapshot.children.mapNotNull {
+                                val doctor = it.getValue(Doctor::class.java)
+                                Log.d("HomeFragment", "Fetched doctor: ${doctor?.name}, Image URL: ${doctor?.profileImageUrl}")
+                                doctor
+                            }
+                            CoroutineScope(Dispatchers.Main).launch {
+                                doctorAdapter.updateList(doctorList)
+                            }
+                        }
 
-                override fun onCancelled(error: DatabaseError) {
-                    Log.e("HomeFragment", "Failed to fetch doctors: ${error.message}")
-                }
-            })
+                        override fun onCancelled(error: DatabaseError) {
+                            Log.e("HomeFragment", "Failed to fetch doctors: ${error.message}")
+                        }
+                    })
+            } catch (e: Exception) {
+                Log.e("HomeFragment", "Error fetching doctors", e)
+            }
+        }
     }
 }

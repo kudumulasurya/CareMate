@@ -14,19 +14,19 @@
         android:background="#FFFFFF">
         <ImageView
             android:id="@+id/chatbot_icon"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/blue_circle_bg"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
             android:clickable="true"
-            android:elevation="4dp"
+            android:elevation="38dp"
             android:focusable="true"
-            android:padding="12dp"
-            android:src="@drawable/bot"
+            android:src="@drawable/chatbotuu"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:tint="#FFFFFF" />
+            />
         <RelativeLayout
             android:id="@+id/hyd"
             android:layout_width="match_parent"
